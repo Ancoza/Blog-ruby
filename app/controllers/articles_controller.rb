@@ -34,6 +34,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def create_comment
+    @article.comments.create(comment_params)
+  end
+
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
     respond_to do |format|
@@ -66,5 +70,9 @@ class ArticlesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def article_params
       params.require(:article).permit(:title, :content)
+    end
+
+    def comment_params
+      params.require[:comment].permit(:body)
     end
 end

@@ -1,0 +1,12 @@
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <div class="mb-3">
+    <%= form.label "Comment:", class: 'form-label'%>
+    <%= form.text_area :body, class: 'form-control '%>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div >
+      <%= form.submit class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>
