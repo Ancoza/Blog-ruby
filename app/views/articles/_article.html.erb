@@ -1,16 +1,17 @@
 
   <div class="card-body">
-    <div id="<%= dom_id article %>">
       <p>
         <strong class="card-title">Title:</strong>
         <%= article.title %>
+      </p>
+      <p>
+        <strong class="card-title">By:</strong>
+        <%= article.user.email %>
       </p>
 
       <p class="card-text">
         <strong>Content:</strong>
         <%= article.content %>
       </p>
-
-    </div>
   </div>
 

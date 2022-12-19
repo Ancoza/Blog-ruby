@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
 
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+
   # GET /articles or /articles.json
   def index
     @articles = Article.all
@@ -21,7 +23,7 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
 
     respond_to do |format|
       if @article.save
@@ -32,10 +34,6 @@ class ArticlesController < ApplicationController
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def create_comment
-    @article.comments.create(comment_params)
   end
 
   # PATCH/PUT /articles/1 or /articles/1.json
@@ -72,7 +70,4 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :content)
     end
 
-    def comment_params
-      params.require[:comment].permit(:body)
-    end
 end

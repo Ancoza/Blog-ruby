@@ -1,7 +1,14 @@
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
   <div class="mb-3">
+    <% if %>
+      <% user_signed_in? %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    <% end %>
+
+
     <%= form.label "Comment:", class: 'form-label'%>
     <%= form.text_area :body, class: 'form-control '%>
+
   </div>
 
   <div class="d-flex justify-content-between">
