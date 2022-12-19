@@ -12,6 +12,9 @@
 
   <body>
     <%= render "partials/nav" %>
+    <% if user_signed_in? %>
+      <h1>Bienvenido <%= current_user.name %></h1>
+    <% end %>
     <%= yield %>
   </body>
 </html>
